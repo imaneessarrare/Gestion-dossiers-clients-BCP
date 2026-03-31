@@ -32,11 +32,11 @@ class UtilisateurSeeder extends Seeder
         }
 
         // Employé
-        if (!DB::table('utilisateurs')->where('email', 'jean.dupont@banque.com')->exists()) {
+        if (!DB::table('utilisateurs')->where('email', 'employe@banque.com')->exists()) {
             DB::table('utilisateurs')->insert([
-                'login' => 'employe1',
-                'nom' => 'Jean Dupont',
-                'email' => 'jean.dupont@banque.com',
+                'login' => 'employe',
+                'nom' => 'employer',
+                'email' => 'employe@banque.com',
                 'mot_de_passe_hash' => Hash::make('employe123'),
                 'role' => 'employe',
                 'statut' => 'actif',
@@ -49,11 +49,11 @@ class UtilisateurSeeder extends Seeder
         }
 
         // Superviseur
-        if (!DB::table('utilisateurs')->where('email', 'pierre.martin@banque.com')->exists()) {
+        if (!DB::table('utilisateurs')->where('email', 'superviseur@banque.com')->exists()) {
             DB::table('utilisateurs')->insert([
-                'login' => 'superviseur1',
-                'nom' => 'Pierre Martin',
-                'email' => 'pierre.martin@banque.com',
+                'login' => 'superviseur',
+                'nom' => 'superviseur',
+                'email' => 'superviseur@banque.com',
                 'mot_de_passe_hash' => Hash::make('superviseur123'),
                 'role' => 'superviseur',
                 'statut' => 'actif',
