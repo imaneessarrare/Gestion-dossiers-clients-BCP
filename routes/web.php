@@ -32,6 +32,32 @@ Route::get('/test', function () {
     return '✅ Laravel fonctionne correctement !';
 });
 
+// Route pour vider le cache (utile en production)
+Route::get('/clear-cache', function () {
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    return 'Cache vidé avec succès !';
+});
+
+// Route pour forcer les migrations (utile si pas d'accès terminal)
+Route::get('/run-migrations', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return 'Migrations exécutées avec succès !';
+});
+
+// Diagnostic pour l'environnement
+Route::get('/check-env', function () {
+    return [
+        'APP_URL' => config('app.url'),
+        'APP_ENV' => config('app.env'),
+        'SESSION_DRIVER' => config('session.driver'),
+        'SESSION_SECURE' => config('session.secure'),
+        'HTTPS' => request()->secure(),
+        'REMOTE_ADDR' => request()->ip(),
+        'HAS_APP_KEY' => !empty(config('app.key')),
+        'CSRF_TOKEN' => csrf_token(),
+    ];
+});
+
 /*
 |--------------------------------------------------------------------------
 | ROUTES PROTÉGÉES
